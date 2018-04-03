@@ -101,6 +101,8 @@ namespace sofa
     private:
         //==============================================================================
         bool checkGlobalAttributes() const;
+        bool checkListenerVariables() const;
+        bool checkEmitterVariables() const;
         
     private:
         /// avoid shallow and copy constructor

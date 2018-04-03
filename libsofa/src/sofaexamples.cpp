@@ -388,12 +388,15 @@ int main(int argc, char *argv[])
     ///@todo : change this !
     //const std::string filename = "/Users/tcarpent/Desktop/sofa_files/BTDEI-hp_H010-subj_S115-Set02_BEC-RAW.sofa";
     //const std::string filename = "/Users/tcarpent/Desktop/drir.sofa";
-    const std::string filename = "/Users/tcarpent/Desktop/BRIRcut/studio1_olivier_P00.sofa";
+//    const std::string filename = "/Users/tcarpent/Desktop/BRIRcut/studio1_olivier_P00.sofa";
     //const std::string filename = "/Users/tcarpent/Desktop/BRIR_AddAbsorbers_ArrayCentre_Emitters1to64.sofa";
     //"/Users/tcarpent/Desktop/sofa_files/subject_003.sofa";
     //"/Users/tcarpent/Downloads/ClubFritz_SH_BM_01.sofa";
     //"/Users/tcarpent/Desktop/sofa_files/hpir_nh2.sofa";
     ///"/Users/tcarpent/Desktop/sofa_files/BTDEI-hp_H010-subj_S115-Set02_BEC-RAW.sofa";
+    
+    const std::string filename = "/Volumes/Dinge/HRTF/Data_Andres/HRIR_measured_pp73_pos_0_0.sofa";
+//    const std::string filename = "/Volumes/Dinge/HRTF/Kayser2009_Anechoic.sofa";
     
     TestFileConvention( filename );
     

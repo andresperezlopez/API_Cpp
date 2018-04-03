@@ -78,6 +78,7 @@ http://www.sofaconventions.org
 #include "../src/SOFAUnits.h"
 #include "../src/SOFAVersion.h"
 #include "../src/SOFAHelper.h"
+#include "../src/SOFAAmbisonicsDRIR.h"
 
 //==============================================================================
 /// private files

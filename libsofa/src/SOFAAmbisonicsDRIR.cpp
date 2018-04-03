@@ -61,11 +61,13 @@
 #include "../src/SOFANcUtils.h"
 #include "../src/SOFAString.h"
 #include "../src/SOFAListener.h"
+#include "../src/SOFASource.h"
+#include "../src/SOFAEmitter.h"
 
 using namespace sofa;
 
-const unsigned int AmbisonicsDRIR::ConventionVersionMajor  =   1;
-const unsigned int AmbisonicsDRIR::ConventionVersionMinor  =   0;
+const unsigned int AmbisonicsDRIR::ConventionVersionMajor  =   0;
+const unsigned int AmbisonicsDRIR::ConventionVersionMinor  =   1;
 
 std::string AmbisonicsDRIR::GetConventionVersion()
 {
@@ -94,12 +96,195 @@ bool AmbisonicsDRIR::checkGlobalAttributes() const
     sofa::File::ensureSOFAConvention( "AmbisonicsDRIR" );
     sofa::File::ensureDataType( "FIRE" );
     
+    /// if mandatory global attributes, check them on this way:
+//    sofa::File::ensureGlobalAttribute( sofa::Attributes::kListenerShortName );
+    
+    return true;
+}
+
+bool AmbisonicsDRIR::checkListenerVariables() const
+{
+    const long I = GetDimension( "I" );
+    if( I != 1 )
+    {
+        SOFA_THROW( "invalid SOFA dimension : I" );
+        return false;
+    }
+    
+    const long C = GetDimension( "C" );
+    if( C != 3 )
+    {
+        SOFA_THROW( "invalid SOFA dimension : C" );
+        return false;
+    }
+    
+    const long M = GetNumMeasurements();
+    if( M <= 0 )
+    {
+        SOFA_THROW( "invalid SOFA dimension : M" );
+        return false;
+    }
+    
+    const long R = GetNumReceivers();
+    if( R <= 0 )
+    {
+        SOFA_THROW( "invalid SOFA dimension : R" );
+        return false;
+    }
+    // TODO!!
+//    else if( R != ambisonicsOrder)
+//    {
+//        SOFA_THROW( "invalid SOFA dimension : R does not match ambisonicsOrder" );
+//        return false;
+//    }
+    
+    
+    const netCDF::NcVar varListenerPosition        = NetCDFFile::getVariable( "ListenerPosition" );
+    const netCDF::NcVar varListenerUp              = NetCDFFile::getVariable( "ListenerUp" );
+    const netCDF::NcVar varListenerView            = NetCDFFile::getVariable( "ListenerView" );
+    
+    const sofa::Listener listener( varListenerPosition, varListenerUp, varListenerView );
+    
+    if( listener.IsValid() == false )
+    {
+        SOFA_THROW( "invalid 'Listener' variables" );
+        return false;
+    }
+    
+    if( listener.ListenerPositionHasDimensions(  I,  C ) == false
+       && listener.ListenerPositionHasDimensions(  M,  C ) == false )
+    {
+        SOFA_THROW( "invalid 'ListenerPosition' dimensions" );
+        return false;
+    }
+    
+    if( listener.HasListenerUp() == true )
+    {
+        /// ListenerUp is not required in the Specifications
+        /// but if it is present, is should be [ I C ] or [ M C ]
+        
+        if( listener.ListenerUpHasDimensions(  I,  C ) == false
+           && listener.ListenerUpHasDimensions(  M,  C ) == false )
+        {
+            SOFA_THROW( "invalid 'ListenerUp' dimensions" );
+            return false;
+        }
+    }
+    else
+    {
+        SOFA_THROW( "missing 'ListenerUp' variable" );
+        return false;
+    }
+    
+    if( listener.HasListenerView() == true )
+    {
+        /// ListenerView is not required in the Specifications
+        /// but if it is present, is should be [ I C ] or [ M C ]
+        
+        if( listener.ListenerViewHasDimensions(  I,  C ) == false
+           && listener.ListenerViewHasDimensions(  M,  C ) == false )
+        {
+            SOFA_THROW( "invalid 'ListenerView' dimensions" );
+            return false;
+        }
+    }
+    else
+    {
+        SOFA_THROW( "missing 'ListenerView' variable" );
+        return false;
+    }
+    
+    /// everything is OK !
+    return true;
+}
+
+bool AmbisonicsDRIR::checkEmitterVariables() const
+{
+    /* Ensure Constants */
+    
+    const long I = GetDimension( "I" );
+    if( I != 1 )
+    {
+        SOFA_THROW( "invalid SOFA dimension : I" );
+        return false;
+    }
+    
+    const long C = GetDimension( "C" );
+    if( C != 3 )
+    {
+        SOFA_THROW( "invalid SOFA dimension : C" );
+        return false;
+    }
+    
+    const long M = GetNumMeasurements();
+    if( M <= 0 )
+    {
+        SOFA_THROW( "invalid SOFA dimension : M" );
+        return false;
+    }
+
+    const long E = GetNumEmitters();
+    if( E <= 0 )
+    {
+        SOFA_THROW( "invalid SOFA dimension : E" );
+        return false;
+    }
+    
+    const long N = GetNumDataSamples();
+    if( N <= 0 )
+    {
+        SOFA_THROW( "invalid SOFA dimension : N" );
+        return false;
+    }
+    
+    /* Ensure Dimensions */
+    
+    /* Source*/
+    const netCDF::NcVar varSourcePosition           = NetCDFFile::getVariable( "SourcePosition" );
+    const netCDF::NcVar varSourceUp                 = NetCDFFile::getVariable( "SourceUp" );
+    const netCDF::NcVar varSourceView               = NetCDFFile::getVariable( "SourceView" );
+    
+    const sofa::Source source( varSourcePosition, varSourceUp, varSourceView);
+    
+    if( source.IsValid() == false )
+    {
+        SOFA_THROW( "invalid 'Source' variables" );
+        return false;
+    }
+    
+    if( source.SourcePositionHasDimensions(  I,  C ) == false )
+    {
+        SOFA_THROW( "invalid 'SourcePosition' dimensions" );
+        return false;
+    }
+    
+    /* Emitter */
+    const netCDF::NcVar varEmitterPosition           = NetCDFFile::getVariable( "EmitterPosition" );
+    const netCDF::NcVar varEmitterUp                 = NetCDFFile::getVariable( "EmitterUp" );
+    const netCDF::NcVar varEmitterView               = NetCDFFile::getVariable( "EmitterView" );
+    
+    const sofa::Emitter emitter( varEmitterPosition, varEmitterUp, varEmitterView);
+    
+    if( emitter.IsValid() == false )
+    {
+        SOFA_THROW( "invalid 'Emitter' variables" );
+        return false;
+    }
+    
+    if( emitter.EmitterPositionHasDimensions( E, C, M ) == false )
+    {
+        SOFA_THROW( "invalid 'EmitterPsotion' dimensions" );
+        return false;
+    }
+    
+    
+    
     return true;
 }
 
 /************************************************************************************/
 /*!
- *  @brief          Returns true if this is a valid SOFA file with GeneralFIRE convention
+ *  @brief          Returns true if this is a valid SOFA file with AmbisonicsDRIR convention
  *
  */
 /************************************************************************************/
@@ -117,6 +302,16 @@ bool AmbisonicsDRIR::IsValid() const
     }
     
     if( checkGlobalAttributes() == false )
+    {
+        return false;
+    }
+    
+    if( checkListenerVariables() == false )
+    {
+        return false;
+    }
+    
+    if( checkEmitterVariables() == false )
     {
         return false;
     }
