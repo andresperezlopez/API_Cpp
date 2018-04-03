@@ -623,6 +623,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F849B7EC175B917E00BB7C57 /* libsofa.debug.xcconfig */;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -630,6 +632,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8ABC6D2173D2D8B00F18AD2 /* libsofa.release.xcconfig */;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -638,6 +642,7 @@
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "";
+				SDKROOT = macosx;
 				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
@@ -646,6 +651,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				SDKROOT = macosx;
 				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
@@ -657,6 +663,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = all;
 			};
 			name = Debug;
@@ -666,6 +673,7 @@
 			baseConfigurationReference = F8ABC6D2173D2D8B00F18AD2 /* libsofa.release.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = all;
 				ZERO_LINK = NO;
 			};
@@ -675,6 +683,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8FD650B187EC4A6007B45C0 /* shelltools.debug.xcconfig */;
 			buildSettings = {
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -682,6 +691,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8FD650C187EC4A6007B45C0 /* shelltools.release.xcconfig */;
 			buildSettings = {
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -689,6 +699,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8FD650B187EC4A6007B45C0 /* shelltools.debug.xcconfig */;
 			buildSettings = {
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -696,6 +707,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8FD650C187EC4A6007B45C0 /* shelltools.release.xcconfig */;
 			buildSettings = {
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -703,6 +715,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8FD650B187EC4A6007B45C0 /* shelltools.debug.xcconfig */;
 			buildSettings = {
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -710,6 +723,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8FD650C187EC4A6007B45C0 /* shelltools.release.xcconfig */;
 			buildSettings = {
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
