@@ -1,2 +1,2 @@
-/build/macos/build/*
-/lib
+/libsofa/build/macos/*
+/libsofa/lib/*
