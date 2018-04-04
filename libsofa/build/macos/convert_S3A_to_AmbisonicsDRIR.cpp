@@ -19,6 +19,30 @@
 #include "dr_wav.h"
 
 
+/************************************************************************************/
+/*!
+ *  @brief          Helper function to  access element [i][j][k] of a "3D array" of dimensions [dim1][dim2][dim3]
+ *                  stored in a 1D data array
+ *
+ */
+/************************************************************************************/
+static inline const std::size_t array3DIndex(const unsigned long i,
+                                             const unsigned long j,
+                                             const unsigned long k,
+                                             const unsigned long dim1,
+                                             const unsigned long dim2,
+                                             const unsigned long dim3)
+{
+    return dim2 * dim3 * i + dim3 * j + k;
+}
+
+
+/************************************************************************************/
+/*
+ *                  UTILS
+ */
+/************************************************************************************/
+
 std::string extractFolderName(std::string path)
 {
     std::string delimiter = "/";
@@ -83,6 +107,13 @@ static void DisplayHelp(std::ostream & output = std::cout)
 }
 
 
+
+/************************************************************************************/
+/*
+ *                  MAIN
+ */
+/************************************************************************************/
+
 int main(int argc, char *argv[])
 {
     
@@ -119,6 +150,7 @@ int main(int argc, char *argv[])
     
     unsigned int ls_index = 0; // achtung! file name counting starts at 1
     bool res = true;
+    
     while (res == true)
     {
         std::string audio_file_name = audio_file_name_prefix + std::to_string(ls_index+1) + audio_file_name_suffix;
@@ -135,12 +167,12 @@ int main(int argc, char *argv[])
     // Parse metadata file
     //==============================================================================
     
-    const std::string speaker_positions_file_name = "/Soundfield/LsPos.txt";
-    const std::string speaker_positions_file_path = input_folder_path + speaker_positions_file_name;
-    std::ifstream speaker_positions_file(speaker_positions_file_path);
+    const std::string   speaker_positions_file_name = "/Soundfield/LsPos.txt";
+    const std::string   speaker_positions_file_path = input_folder_path + speaker_positions_file_name;
+    std::ifstream       speaker_positions_file(speaker_positions_file_path);
 
-    double loudspeaker_positions[num_loudspeaker_files*3]; // let's interleave
-    float x, y, z;
+    double  loudspeaker_positions[num_loudspeaker_files*3]; // let's interleave
+    float   x, y, z;
     ls_index = 0;
 
     while ( speaker_positions_file >> x >> y >> z )
@@ -173,8 +205,10 @@ int main(int argc, char *argv[])
     const netCDF::NcFile::FileFormat format = netCDF::NcFile::nc4;
     
     /// the file shall not exist beforehand
-    std::string file_name = "/" + extractFolderName(input_folder_path);
-    const std::string output_file_path = argv[2] + file_name + ".sofa";
+    std::string file_name   = extractFolderName(input_folder_path);
+    std::string slash       = "/";
+    
+    const std::string output_file_path = argv[2] + slash + file_name + ".sofa";
     
     const netCDF::NcFile theFile( output_file_path, mode, format );
     
@@ -445,16 +479,45 @@ int main(int argc, char *argv[])
             std::cerr << "ACTHUNG!!!!!! num total samples not matching" << std::endl;
         }
         
+        /*
+         *  At this point, we have all audio data in interleaved form, but with order (M)ENR,
+         *  and the SOFA specs defines FIRE data as (M)REN.
+         *  Therefore, we whould swap dimmensions...
+         */
+        float* audiodata_reordered = (float*)calloc(total_num_samples,sizeof(float));
+        
+        uint64_t index_ENR = 0;     //current
+        uint64_t index_REN = 0;     //reordered
+        
+        uint64_t E = numEmitters;
+        uint64_t N = numDataSamplesPerChannel;
+        uint64_t R = numReceivers;
+        
+        for( uint64_t e = 0; e < E; e++ )   // num speakers
+        {
+            for( uint64_t n = 0; n < N; n++ )   // num samples
+            {
+                for( uint64_t r = 0; r < R; r++ )   // num channels
+                {
+                    index_ENR = array3DIndex(e,n,r,E,N,R);
+                    index_REN = array3DIndex(r,e,n,R,E,N);
+//                    std::cerr << index_ENR << "\t -> \t" << index_REN << std::endl;
+                    audiodata_reordered[index_REN] = audiodata[index_ENR];
+                }
+            }
+        }
+        
         /* now put all data at once in the variable */
         const netCDF::NcVar var = theFile.addVar( varName, typeName, dimNames );
         try
         {
-            var.putVar(audiodata);
+            var.putVar(audiodata_reordered);
         } catch (netCDF::exceptions::NcException& e) {
             std::cerr << "ERROR: processing audio" << std::endl;
         }
         
         /* don't forget it */
+        free(audiodata_reordered);
         free(audiodata);
     }
     
