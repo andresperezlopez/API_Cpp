@@ -96,8 +96,10 @@ bool AmbisonicsDRIR::checkGlobalAttributes() const
     sofa::File::ensureSOFAConvention( "AmbisonicsDRIR" );
     sofa::File::ensureDataType( "FIRE" );
     
-    /// if mandatory global attributes, check them on this way:
-//    sofa::File::ensureGlobalAttribute( sofa::Attributes::kListenerShortName );
+    /* Convention-specific compulsory Global Attributes */
+    sofa::File::ensureGlobalAttribute( "AmbisonicsOrder" );
+    sofa::File::ensureGlobalAttribute( "AmbisonicsChannelOrdering" );
+    sofa::File::ensureGlobalAttribute( "AmbisonicsNormalization" );
     
     return true;
 }
@@ -126,17 +128,28 @@ bool AmbisonicsDRIR::checkListenerVariables() const
     }
     
     const long R = GetNumReceivers();
+    
     if( R <= 0 )
     {
         SOFA_THROW( "invalid SOFA dimension : R" );
         return false;
     }
-    // TODO!!
-//    else if( R != ambisonicsOrder)
-//    {
-//        SOFA_THROW( "invalid SOFA dimension : R does not match ambisonicsOrder" );
-//        return false;
-//    }
+ 
+    /************************ TODO ************************
+     *
+     *  ENSURE THAT THESE KIND OF OPERATIONS ARE VALID
+     *
+     ******************************************************/
+    
+    std::string ambisonicsOrderString   = GetAttributeValueAsString( "AmbisonicsOrder" );
+    uint16_t    ambisonicsOrderUInt16   = ( uint16_t ) std::stoi( ambisonicsOrderString );
+    uint16_t    computedNumReceivers    = ( ambisonicsOrderUInt16 + 1 ) * ( ambisonicsOrderUInt16 + 1 );
+    
+    if( R != computedNumReceivers )
+    {
+        SOFA_THROW( "invalid SOFA dimension : R does not match Ambisonics Order" );
+        return false;
+    }
     
     
     const netCDF::NcVar varListenerPosition        = NetCDFFile::getVariable( "ListenerPosition" );

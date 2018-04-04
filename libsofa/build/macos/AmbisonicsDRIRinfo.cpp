@@ -376,23 +376,34 @@ int main(int argc, char *argv[])
         
         const bool paddingForDisplay = true;
         
+        
+        /* print Attributes */
+        
         sofa::String::PrintSeparationLine( output );
         
         theFile.PrintAllAttributes( output , paddingForDisplay  );
+
         
         output << std::endl;
+        
+        /* print Dimensions */
         
         sofa::String::PrintSeparationLine( output );
         
         theFile.PrintSOFADimensions( output , paddingForDisplay );
         
-        output << std::endl << std::endl;
-        output << std::endl << std::endl;
+        output << std::endl;
+        
+        /* print Variables */
+        
+        sofa::String::PrintSeparationLine( output );
+        
+        theFile.PrintAllVariables(output);
+        
         output << std::endl << std::endl;
         output << std::endl << std::endl;
         
         const sofa::AmbisonicsDRIR adrir( filename );
-        
         const bool isADRIR = adrir.IsValid();
         
         if( isADRIR == true )

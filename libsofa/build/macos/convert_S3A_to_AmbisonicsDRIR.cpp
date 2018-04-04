@@ -225,6 +225,7 @@ int main(int argc, char *argv[])
         attributes.Set( sofa::Attributes::kDataType,                "FIRE" );
         attributes.Set( sofa::Attributes::kTitle,                   file_name );
         attributes.Set( sofa::Attributes::kApplicationName,         "convert_S3A_to_AmbisonicsDRIR" );
+        attributes.Set( sofa::Attributes::kApplicationVersion,      "0.1" );
         attributes.Set( sofa::Attributes::kReferences,              "Ambisonics Directional Room Impulse Response as a new Convention of the Spatially Oriented Format for Acoustics" );
         attributes.Set( sofa::Attributes::kRoomType,                "reverberant" );
         
@@ -242,14 +243,20 @@ int main(int argc, char *argv[])
         theFile.putAtt( attName, attValue );
     }
     
-    // TODO
+
     /// add attribute specific to your convention (e.g. 'DatabaseName' for the 'SimpleFreeFieldHRIR' convention)
-//    {
-//        const std::string attName  = "DatabaseName";
-//        const std::string attValue = "TestDatabase";
-//        
-//        theFile.putAtt( attName, attValue );
-//    }
+    {
+        /* Ambisonics Order */
+        theFile.putAtt( "AmbisonicsOrder", "1" );
+        // TODO: MAYBE USE INT TYPE??
+        // NO!! "in SOFA, the global attributes must always be strings" (SOFAFile.cpp, line 1689)
+        
+        /* Ambisonics Channel Ordering */
+        theFile.putAtt( "AmbisonicsChannelOrdering", "FuMa" );
+        
+        /* Ambisonics Normalization */
+        theFile.putAtt( "AmbisonicsNormalization", "FuMa" );
+    }
     
     //==============================================================================
     /// create the dimensions
