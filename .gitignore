@@ -1,2 +1,5 @@
-/libsofa/build/macos/*
+/libsofa/build/macos/build/*
+/libsofa/build/macos/*.plist
+/libsofa/build/macos/*.xcconfig
+/libsofa/build/macos/libsofa.xcodeproj/*
 /libsofa/lib/*
