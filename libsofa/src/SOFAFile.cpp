@@ -1568,6 +1568,51 @@ bool File::getDataIR(std::vector< double > &values) const
     return NetCDFFile::GetValues( values, "Data.IR" );
 }
 
+
+/************************************************************************************/
+/*!
+ *  @brief          Retrieves the channel ordering of the Data.IR variable
+ *  @return         true on success
+ *
+ */
+/************************************************************************************/
+bool File::GetDataIRChannelOrdering(sofa::AmbisonicsChannelOrdering::Type &channelOrdering) const
+{
+    SOFA_ASSERT( HasVariable( "Data.IR" ) == true );
+    
+    const netCDF::NcVar var = getVariable( "Data.IR" );
+    
+    const netCDF::NcVarAtt attNChannelOrdering  = sofa::NcUtils::GetAttribute( var, "AmbisonicsChannelOrdering" );
+    const std::string channelOrderingName       = sofa::NcUtils::GetAttributeValueAsString( attNChannelOrdering );
+    
+    channelOrdering = sofa::AmbisonicsChannelOrdering::GetType( channelOrderingName );
+    
+    return true;
+}
+
+
+/************************************************************************************/
+/*!
+ *  @brief          Retrieves the normalization of the Data.IR variable
+ *  @return         true on success
+ *
+ */
+/************************************************************************************/
+bool File::GetDataIRNormalization(sofa::AmbisonicsNormalization::Type &normalization) const
+{
+    SOFA_ASSERT( HasVariable( "Data.IR" ) == true );
+    
+    const netCDF::NcVar var = getVariable( "Data.IR" );
+    
+    const netCDF::NcVarAtt attNNormalization    = sofa::NcUtils::GetAttribute( var, "AmbisonicsNormalization" );
+    const std::string normalizationName         = sofa::NcUtils::GetAttributeValueAsString( attNNormalization );
+    
+    normalization = sofa::AmbisonicsNormalization::GetType( normalizationName );
+    
+    return true;
+}
+
+
 /************************************************************************************/
 /*!
  *  @brief          Retrieves the Data.Delay values

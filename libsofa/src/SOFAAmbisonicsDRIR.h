@@ -95,6 +95,9 @@ namespace sofa
         bool GetDataIR(std::vector< double > &values) const;
         bool GetDataIR(double *values, const unsigned long dim1, const unsigned long dim2, const unsigned long dim3, const unsigned long dim4) const;
         
+        bool GetDataIRChannelOrdering(sofa::AmbisonicsChannelOrdering::Type &channelOrdering) const;
+        bool GetDataIRNormalization(sofa::AmbisonicsNormalization::Type &normalization) const;
+        
         //==============================================================================
         bool GetDataDelay(double *values, const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const;
         

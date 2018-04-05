@@ -98,8 +98,8 @@ bool AmbisonicsDRIR::checkGlobalAttributes() const
     
     /* Convention-specific compulsory Global Attributes */
     sofa::File::ensureGlobalAttribute( "AmbisonicsOrder" );
-    sofa::File::ensureGlobalAttribute( "AmbisonicsChannelOrdering" );
-    sofa::File::ensureGlobalAttribute( "AmbisonicsNormalization" );
+//    sofa::File::ensureGlobalAttribute( "AmbisonicsChannelOrdering" );
+//    sofa::File::ensureGlobalAttribute( "AmbisonicsNormalization" );
     
     return true;
 }
@@ -387,6 +387,33 @@ bool AmbisonicsDRIR::GetDataIR(double *values,
     /// Data.IR is [ M R N E ]
     
     return NetCDFFile::GetValues( values, dim1, dim2, dim3, dim4, "Data.IR" );
+}
+
+
+
+/************************************************************************************/
+/*!
+ *  @brief          Retrieves the channel ordering of the Data.IR variable
+ *  @return         true on success
+ *
+ */
+/************************************************************************************/
+bool AmbisonicsDRIR::GetDataIRChannelOrdering(sofa::AmbisonicsChannelOrdering::Type &channelOrdering) const
+{
+    return sofa::File::GetDataIRChannelOrdering(channelOrdering);
+}
+
+
+/************************************************************************************/
+/*!
+ *  @brief          Retrieves the normalization of the Data.IR variable
+ *  @return         true on success
+ *
+ */
+/************************************************************************************/
+bool AmbisonicsDRIR::GetDataIRNormalization(sofa::AmbisonicsNormalization::Type &normalization) const
+{
+    return sofa::File::GetDataIRNormalization( normalization );
 }
 
 

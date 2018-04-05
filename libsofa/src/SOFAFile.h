@@ -53,6 +53,8 @@ http://www.sofaconventions.org
 #include "../src/SOFAAttributes.h"
 #include "../src/SOFACoordinates.h"
 #include "../src/SOFAUnits.h"
+#include "../src/SOFAAmbisonicsChannelOrdering.h"
+#include "../src/SOFAAmbisonicsNormalization.h"
 
 namespace sofa
 {
@@ -127,6 +129,9 @@ namespace sofa
         bool GetEmitterView(sofa::Coordinates::Type &coordinates, sofa::Units::Type &units) const;
         bool HasEmitterUp() const;
         bool HasEmitterView() const;
+        
+        bool GetDataIRChannelOrdering(sofa::AmbisonicsChannelOrdering::Type &channelOrdering) const;
+        bool GetDataIRNormalization(sofa::AmbisonicsNormalization::Type &normalization) const;
         
         bool GetListenerPosition(double *values, const unsigned long dim1, const unsigned long dim2) const;
         bool GetListenerUp(double *values, const unsigned long dim1, const unsigned long dim2) const;
