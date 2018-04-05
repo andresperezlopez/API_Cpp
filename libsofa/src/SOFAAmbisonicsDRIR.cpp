@@ -139,18 +139,21 @@ bool AmbisonicsDRIR::checkListenerVariables() const
      *
      *  ENSURE THAT THESE KIND OF OPERATIONS ARE VALID
      *
+     *  Not really sure about the concept...
+     *    1) Only global attribute with numerical value (but still string)
+     *    2) What about mixed orders? (Octomic...)
+     *    3) Human error in AmbisonicsOrder attr might fuck up the whole file
      ******************************************************/
-    
-    std::string ambisonicsOrderString   = GetAttributeValueAsString( "AmbisonicsOrder" );
-    uint16_t    ambisonicsOrderUInt16   = ( uint16_t ) std::stoi( ambisonicsOrderString );
-    uint16_t    computedNumReceivers    = ( ambisonicsOrderUInt16 + 1 ) * ( ambisonicsOrderUInt16 + 1 );
-    
-    if( R != computedNumReceivers )
-    {
-        SOFA_THROW( "invalid SOFA dimension : R does not match Ambisonics Order" );
-        return false;
-    }
-    
+
+//    std::string ambisonicsOrderString   = GetAttributeValueAsString( "AmbisonicsOrder" );
+//    uint16_t    ambisonicsOrderUInt16   = ( uint16_t ) std::stoi( ambisonicsOrderString );
+//    uint16_t    computedNumReceivers    = ( ambisonicsOrderUInt16 + 1 ) * ( ambisonicsOrderUInt16 + 1 );
+//    
+//    if( R != computedNumReceivers )
+//    {
+//        SOFA_THROW( "invalid SOFA dimension : R does not match Ambisonics Order" );
+//        return false;
+//    }
     
     const netCDF::NcVar varListenerPosition        = NetCDFFile::getVariable( "ListenerPosition" );
     const netCDF::NcVar varListenerUp              = NetCDFFile::getVariable( "ListenerUp" );
