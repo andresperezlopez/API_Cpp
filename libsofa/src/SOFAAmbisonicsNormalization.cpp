@@ -110,7 +110,8 @@ sofa::AmbisonicsNormalization::Type sofa::AmbisonicsNormalization::GetType(const
     
     if( typeMap.count( name ) == 0 )
     {
-        SOFA_ASSERT( false );
+        /* remove the assert, so program does not crash before showing the error message */
+        //        SOFA_ASSERT( false );
         
         return sofa::AmbisonicsNormalization::kNumAmbisonicsNormalizationTypes;
     }

@@ -1587,6 +1587,12 @@ bool File::GetDataIRChannelOrdering(sofa::AmbisonicsChannelOrdering::Type &chann
     
     channelOrdering = sofa::AmbisonicsChannelOrdering::GetType( channelOrderingName );
     
+    /* attribute not found */
+    if (channelOrdering == sofa::AmbisonicsChannelOrdering::kNumAmbisonicsChannelOrderingTypes)
+    {
+        return false;
+    }
+    
     return true;
 }
 
@@ -1608,6 +1614,12 @@ bool File::GetDataIRNormalization(sofa::AmbisonicsNormalization::Type &normaliza
     const std::string normalizationName         = sofa::NcUtils::GetAttributeValueAsString( attNNormalization );
     
     normalization = sofa::AmbisonicsNormalization::GetType( normalizationName );
+    
+    /* attribute not found */
+    if (normalization == sofa::AmbisonicsNormalization::kNumAmbisonicsNormalizationTypes)
+    {
+        return false;
+    }
     
     return true;
 }

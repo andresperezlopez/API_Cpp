@@ -98,8 +98,6 @@ bool AmbisonicsDRIR::checkGlobalAttributes() const
     
     /* Convention-specific compulsory Global Attributes */
     sofa::File::ensureGlobalAttribute( "AmbisonicsOrder" );
-//    sofa::File::ensureGlobalAttribute( "AmbisonicsChannelOrdering" );
-//    sofa::File::ensureGlobalAttribute( "AmbisonicsNormalization" );
     
     return true;
 }
@@ -294,9 +292,34 @@ bool AmbisonicsDRIR::checkEmitterVariables() const
     }
     
     
+    return true;
+}
+
+bool AmbisonicsDRIR::checkDataIRVariables() const
+{
+    /* Ensure Channel Ordering and Normalization exist */
+    
+    sofa::AmbisonicsChannelOrdering::Type channelOrdering;
+    sofa::AmbisonicsNormalization::Type normalization;
+    bool result = false;
+    
+    result = GetDataIRChannelOrdering( channelOrdering );
+    if( result == false )
+    {
+        SOFA_THROW( "Attribute 'Data.IR:ChannelOrdering missing" );
+        return false;
+    }
+    
+    result = GetDataIRNormalization( normalization );
+    if( result == false )
+    {
+        SOFA_THROW( "Attribute 'Data.IR:Normalization missing" );
+        return false;
+    }
     
     return true;
 }
+
 
 /************************************************************************************/
 /*!
@@ -328,6 +351,11 @@ bool AmbisonicsDRIR::IsValid() const
     }
     
     if( checkEmitterVariables() == false )
+    {
+        return false;
+    }
+    
+    if( checkDataIRVariables() == false )
     {
         return false;
     }

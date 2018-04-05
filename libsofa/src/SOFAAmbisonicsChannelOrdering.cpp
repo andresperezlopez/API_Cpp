@@ -108,7 +108,8 @@ sofa::AmbisonicsChannelOrdering::Type sofa::AmbisonicsChannelOrdering::GetType(c
     
     if( typeMap.count( name ) == 0 )
     {
-        SOFA_ASSERT( false );
+        /* remove the assert, so program does not crash before showing the error message */
+        //        SOFA_ASSERT( false );
         
         return sofa::AmbisonicsChannelOrdering::kNumAmbisonicsChannelOrderingTypes;
     }
