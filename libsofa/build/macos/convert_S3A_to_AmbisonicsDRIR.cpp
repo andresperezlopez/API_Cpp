@@ -248,14 +248,12 @@ int main(int argc, char *argv[])
     {
         /* Ambisonics Order */
         theFile.putAtt( "AmbisonicsOrder", "1" );
-        // TODO: MAYBE USE INT TYPE??
-        // NO!! "in SOFA, the global attributes must always be strings" (SOFAFile.cpp, line 1689)
         
-        /* Ambisonics Channel Ordering */
-        theFile.putAtt( "AmbisonicsChannelOrdering", "FuMa" );
+        /* Microphone Model */
+        theFile.putAtt( "MicrophoneModel", "Soundfield" );
         
-        /* Ambisonics Normalization */
-        theFile.putAtt( "AmbisonicsNormalization", "FuMa" );
+        /* Ambisonics Conversion Method */
+        theFile.putAtt( "AmbisonicsConversionMethod", "Hardware" );
     }
     
     //==============================================================================
@@ -275,6 +273,9 @@ int main(int argc, char *argv[])
     theFile.addDim( "I", 1 );   ///< this is required by the standard
     theFile.addDim( "M", numMeasurements );
     theFile.addDim( "R", numReceivers );
+    
+    
+    
     theFile.addDim( "E", numEmitters );
     theFile.addDim( "N", numDataSamplesPerChannel );  // per channel!!
     
@@ -294,6 +295,7 @@ int main(int argc, char *argv[])
         var.putVar( &samplingRate );
         var.putAtt( "Units", "hertz" );
     }
+    
     
     /// Data.Delay
     {
@@ -516,6 +518,12 @@ int main(int argc, char *argv[])
         
         /* now put all data at once in the variable */
         const netCDF::NcVar var = theFile.addVar( varName, typeName, dimNames );
+        
+        /* attributes */
+        var.putAtt( "AmbisonicsChannelOrdering", "fuma" );
+        var.putAtt( "AmbisonicsNormalization", "fuma" );
+        
+        /* actual data */
         try
         {
             var.putVar(audiodata_reordered);
@@ -526,6 +534,9 @@ int main(int argc, char *argv[])
         /* don't forget it */
         free(audiodata_reordered);
         free(audiodata);
+        
+        
+
     }
     
     
