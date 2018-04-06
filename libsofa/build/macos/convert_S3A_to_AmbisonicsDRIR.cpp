@@ -394,6 +394,7 @@ int main(int argc, char *argv[])
         var.putAtt( "Type", "cartesian" );
         var.putAtt( "Units", "meter" );
         
+        /* values: zeros by default */
         double* receiverPosition = (double*)calloc(numReceivers*3*1,
                                                    sizeof(double));
         var.putVar((const double*)receiverPosition);

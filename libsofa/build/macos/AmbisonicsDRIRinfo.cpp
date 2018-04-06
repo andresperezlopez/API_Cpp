@@ -345,8 +345,8 @@ static void PrintDataIRAttr(const sofa::File &theFile,
     ok = theFile.GetDataIRNormalization( normalization );
     SOFA_ASSERT( ok == true );
 
-    output << sofa::String::PadWith( "DataIR:ChannelOrdering" ) << " = " << sofa::AmbisonicsChannelOrdering::GetName( channelOrdering ) << std::endl;
-    output << sofa::String::PadWith( "DataIR:Normalization" ) << " = " << sofa::AmbisonicsNormalization::GetName( normalization ) << std::endl;
+    output << sofa::String::PadWith( "Data.IR:ChannelOrdering" ) << " = " << sofa::AmbisonicsChannelOrdering::GetName( channelOrdering ) << std::endl;
+    output << sofa::String::PadWith( "Data.IR:Normalization" ) << " = " << sofa::AmbisonicsNormalization::GetName( normalization ) << std::endl;
     
 }
 
