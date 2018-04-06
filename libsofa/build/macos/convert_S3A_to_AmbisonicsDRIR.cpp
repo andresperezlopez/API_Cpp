@@ -310,6 +310,10 @@ int main(int argc, char *argv[])
         const netCDF::NcVar var = theFile.addVar( varName, typeName, dimNames );
         
         /* values: zeros by default */
+        double* delay = (double*)calloc(numMeasurements*numReceivers,
+                                              sizeof(double));
+        var.putVar((const double*)delay);
+        free(delay);
     }
     
     /// ListenerPosition
@@ -327,6 +331,10 @@ int main(int argc, char *argv[])
         var.putAtt( "Units", "meter" );
         
         /* values: zeros by default */
+        double* listenerPosition = (double*)calloc(numMeasurements*3,
+                                                         sizeof(double));
+        var.putVar((const double*)listenerPosition);
+        free(listenerPosition);
     }
     
     /// ListenerUp
@@ -344,6 +352,10 @@ int main(int argc, char *argv[])
         var.putAtt( "Units", "meter" );
         
         /* values: zeros by default */
+        double* listenerUp = (double*)calloc(numMeasurements*3,
+                                              sizeof(double));
+        var.putVar((const double*)listenerUp);
+        free(listenerUp);
     }
     
     /// ListenerView
@@ -361,6 +373,10 @@ int main(int argc, char *argv[])
         var.putAtt( "Units", "meter" );
         
         /* values: zeros by default */
+        double* listenerView = (double*)calloc(numMeasurements*3,
+                                                     sizeof(double));
+        var.putVar((const double*)listenerView);
+        free(listenerView);
     }
     
     /// ReceiverPosition
@@ -378,7 +394,10 @@ int main(int argc, char *argv[])
         var.putAtt( "Type", "cartesian" );
         var.putAtt( "Units", "meter" );
         
-        /* values: zeros by default */
+        double* receiverPosition = (double*)calloc(numReceivers*3*1,
+                                                   sizeof(double));
+        var.putVar((const double*)receiverPosition);
+        free(receiverPosition);
     }
     
     /// SourcePosition
@@ -396,6 +415,10 @@ int main(int argc, char *argv[])
         var.putAtt( "Units", "meter" );
         
         /* values: zeros by default */
+        double* sourcePosition = (double*)calloc(1*3,
+                                                 sizeof(double));
+        var.putVar((const double*)sourcePosition);
+        free(sourcePosition);
     }
     
     /// -------------------------------------------------
