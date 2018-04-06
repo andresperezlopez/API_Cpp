@@ -39,6 +39,10 @@
 		442168C42073B62900B875F4 /* createTestAmbisonicsDRIR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442168C32073B62900B875F4 /* createTestAmbisonicsDRIR.cpp */; };
 		442168C92073CCBA00B875F4 /* SOFAAmbisonicsDRIR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442168912073893800B875F4 /* SOFAAmbisonicsDRIR.cpp */; };
 		442168D22073CD1E00B875F4 /* convert_S3A_to_AmbisonicsDRIR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442168D12073CD1E00B875F4 /* convert_S3A_to_AmbisonicsDRIR.cpp */; };
+		4465527A207669A0008D2503 /* SOFAAmbisonicsChannelOrdering.h in Headers */ = {isa = PBXBuildFile; fileRef = 44655279207669A0008D2503 /* SOFAAmbisonicsChannelOrdering.h */; };
+		4465527C20766B90008D2503 /* SOFAAmbisonicsChannelOrdering.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4465527B20766B90008D2503 /* SOFAAmbisonicsChannelOrdering.cpp */; };
+		4465527E207673F4008D2503 /* SOFAAmbisonicsNormalization.h in Headers */ = {isa = PBXBuildFile; fileRef = 4465527D207673F4008D2503 /* SOFAAmbisonicsNormalization.h */; };
+		4465528020767471008D2503 /* SOFAAmbisonicsNormalization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4465527F20767471008D2503 /* SOFAAmbisonicsNormalization.cpp */; };
 		F82B2B2419EE76EB006A84FC /* sofaexamples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F82B2B2319EE76C2006A84FC /* sofaexamples.cpp */; };
 		F8ABC702173D2EFA00F18AD2 /* sofainfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8ABC701173D2EFA00F18AD2 /* sofainfo.cpp */; };
 		F8ABCBE8173E9D3D00F18AD2 /* SOFAAttributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8ABCBE7173E9D3D00F18AD2 /* SOFAAttributes.cpp */; };
@@ -180,6 +184,10 @@
 		442168D02073CCBA00B875F4 /* create test ADRIR copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "create test ADRIR copy2-Info.plist"; path = "/Users/andres.perez/source/API_Cpp/libsofa/build/macos/create test ADRIR copy2-Info.plist"; sourceTree = "<absolute>"; };
 		442168D12073CD1E00B875F4 /* convert_S3A_to_AmbisonicsDRIR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = convert_S3A_to_AmbisonicsDRIR.cpp; sourceTree = "<group>"; };
 		442168D32073F0C800B875F4 /* dr_wav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dr_wav.h; sourceTree = "<group>"; };
+		44655279207669A0008D2503 /* SOFAAmbisonicsChannelOrdering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOFAAmbisonicsChannelOrdering.h; sourceTree = "<group>"; };
+		4465527B20766B90008D2503 /* SOFAAmbisonicsChannelOrdering.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SOFAAmbisonicsChannelOrdering.cpp; sourceTree = "<group>"; };
+		4465527D207673F4008D2503 /* SOFAAmbisonicsNormalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOFAAmbisonicsNormalization.h; sourceTree = "<group>"; };
+		4465527F20767471008D2503 /* SOFAAmbisonicsNormalization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SOFAAmbisonicsNormalization.cpp; sourceTree = "<group>"; };
 		D2AAC046055464E500DB518D /* libsofa_debug.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsofa_debug.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F82B2B2119EE76AC006A84FC /* sofaexamples_debug */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sofaexamples_debug; sourceTree = BUILT_PRODUCTS_DIR; };
 		F82B2B2319EE76C2006A84FC /* sofaexamples.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = sofaexamples.cpp; path = ../../src/sofaexamples.cpp; sourceTree = "<group>"; };
@@ -440,6 +448,8 @@
 				F8ABCB44173E908F00F18AD2 /* SOFAAPI.h */,
 				F8ABCBAE173E983300F18AD2 /* SOFAAttributes.h */,
 				F8ABCF0D173FEEE400F18AD2 /* SOFACoordinates.h */,
+				44655279207669A0008D2503 /* SOFAAmbisonicsChannelOrdering.h */,
+				4465527D207673F4008D2503 /* SOFAAmbisonicsNormalization.h */,
 				F8ABC9A5173D391E00F18AD2 /* SOFAFile.h */,
 				F8B3F34B19F5627F00C8004D /* SOFAHelper.h */,
 				F8ABCB72173E92A500F18AD2 /* SOFAHostArchitecture.h */,
@@ -459,6 +469,8 @@
 				F8ABCB8F173E95CF00F18AD2 /* SOFAAPI.cpp */,
 				F8ABCBE7173E9D3D00F18AD2 /* SOFAAttributes.cpp */,
 				F8ABCF3D173FF4E500F18AD2 /* SOFACoordinates.cpp */,
+				4465527B20766B90008D2503 /* SOFAAmbisonicsChannelOrdering.cpp */,
+				4465527F20767471008D2503 /* SOFAAmbisonicsNormalization.cpp */,
 				F8ABD1B81740F95900F18AD2 /* SOFADate.cpp */,
 				F8ABD1B61740F8EA00F18AD2 /* SOFADate.h */,
 				F8ABD28E174129F400F18AD2 /* SOFAEmitter.cpp */,
@@ -499,9 +511,11 @@
 				F8ABD07017401C3700F18AD2 /* SOFAListener.h in Headers */,
 				F8ABD07E1740233600F18AD2 /* SOFAEmitter.h in Headers */,
 				F8B3582D1EBCDD7900292FD6 /* SOFASingleRoomDRIR.h in Headers */,
+				4465527E207673F4008D2503 /* SOFAAmbisonicsNormalization.h in Headers */,
 				F8ABD08E1740239300F18AD2 /* SOFASource.h in Headers */,
 				442168902073891900B875F4 /* SOFAAmbisonicsDRIR.h in Headers */,
 				F8ABD090174023BE00F18AD2 /* SOFAReceiver.h in Headers */,
+				4465527A207669A0008D2503 /* SOFAAmbisonicsChannelOrdering.h in Headers */,
 				F8D9B7B41AC17A78007A1DE9 /* SOFAGeneralTF.h in Headers */,
 				F8ABD1B71740F8EA00F18AD2 /* SOFADate.h in Headers */,
 				F8ABD4091742309200F18AD2 /* SOFASimpleFreeFieldHRIR.h in Headers */,
@@ -712,6 +726,8 @@
 				F8ABCBE8173E9D3D00F18AD2 /* SOFAAttributes.cpp in Sources */,
 				F8ABCC9B173EAEFE00F18AD2 /* SOFAString.cpp in Sources */,
 				F8D9B7B61AC17A95007A1DE9 /* SOFAGeneralTF.cpp in Sources */,
+				4465528020767471008D2503 /* SOFAAmbisonicsNormalization.cpp in Sources */,
+				4465527C20766B90008D2503 /* SOFAAmbisonicsChannelOrdering.cpp in Sources */,
 				F8ABCF30173FF29700F18AD2 /* SOFAUnits.cpp in Sources */,
 				F8B3F34E19F562FB00C8004D /* SOFAHelper.cpp in Sources */,
 				F8ABCF3E173FF4E500F18AD2 /* SOFACoordinates.cpp in Sources */,
