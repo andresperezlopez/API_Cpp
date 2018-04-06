@@ -121,6 +121,83 @@ static void PrintEmitter(const sofa::File &theFile,
         }
     }
     output << std::endl;
+    
+    ///
+    {
+        sofa::Coordinates::Type coordinates;
+        sofa::Units::Type units;
+        const bool ok = theFile.GetEmitterView( coordinates, units );
+        
+        SOFA_ASSERT( ok == true );
+        
+        output << sofa::String::PadWith( "EmitterView:Type" ) << " = " << sofa::Coordinates::GetName( coordinates ) << std::endl;
+        output << sofa::String::PadWith( "EmitterView:Units" ) << " = " << sofa::Units::GetName( units ) << std::endl;
+        
+        std::vector< std::size_t > dims;
+        theFile.GetVariableDimensions( dims, "EmitterView" );
+        
+        SOFA_ASSERT( dims.size() == 3 );
+        
+        std::vector< double > pos;
+        pos.resize( dims[0] * dims[1] * dims[2] );
+        
+        theFile.GetEmitterView( &pos[0], dims[0], dims[1], dims[2] );
+        
+        output << sofa::String::PadWith( "EmitterView" ) << " = " ;
+        
+        for( std::size_t i = 0; i < dims[0]; i++ )
+        {
+            for( std::size_t j = 0; j < dims[1]; j++ )
+            {
+                for( std::size_t k = 0; k < dims[2]; k++ )
+                {
+                    const std::size_t index = array3DIndex( i, j, k, dims[0], dims[1], dims[2] );
+                    output << pos[ index ] << " ";
+                }
+            }
+        }
+        output << std::endl;
+    }
+    
+    output << std::endl;
+    
+    ///
+    {
+        sofa::Coordinates::Type coordinates;
+        sofa::Units::Type units;
+        const bool ok = theFile.GetEmitterUp( coordinates, units );
+        
+        SOFA_ASSERT( ok == true );
+        
+        output << sofa::String::PadWith( "EmitterUp:Type" ) << " = " << sofa::Coordinates::GetName( coordinates ) << std::endl;
+        output << sofa::String::PadWith( "EmitterUp:Units" ) << " = " << sofa::Units::GetName( units ) << std::endl;
+        
+        std::vector< std::size_t > dims;
+        theFile.GetVariableDimensions( dims, "EmitterUp" );
+        
+        SOFA_ASSERT( dims.size() == 3 );
+        
+        std::vector< double > pos;
+        pos.resize( dims[0] * dims[1] * dims[2] );
+        
+        theFile.GetEmitterUp( &pos[0], dims[0], dims[1], dims[2] );
+        
+        output << sofa::String::PadWith( "EmitterUp" ) << " = " ;
+        
+        for( std::size_t i = 0; i < dims[0]; i++ )
+        {
+            for( std::size_t j = 0; j < dims[1]; j++ )
+            {
+                for( std::size_t k = 0; k < dims[2]; k++ )
+                {
+                    const std::size_t index = array3DIndex(i,j,k, dims[0], dims[1], dims[2]);
+                    output << pos[ index ] << " ";
+                }
+            }
+        }
+        output << std::endl;
+    }
+
 }
 
 /************************************************************************************/

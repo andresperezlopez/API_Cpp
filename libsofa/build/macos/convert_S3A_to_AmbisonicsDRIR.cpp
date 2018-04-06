@@ -466,9 +466,9 @@ int main(int argc, char *argv[])
         var.putAtt( "Units", "meter" );
         
         /* values: [0 0 1] for each speaker */
-        double* emitterUp = (double*)calloc(numMeasurements*3,
+        double* emitterUp = (double*)calloc(numEmitters*3*numMeasurements,
                                             sizeof(double));
-        for (size_t i=0; i<numMeasurements; i++)
+        for (size_t i=0; i<(numEmitters*numMeasurements); i++)
         {
             emitterUp[(i*3)+2] = 1;
         }
@@ -493,9 +493,9 @@ int main(int argc, char *argv[])
         var.putAtt( "Units", "meter" );
         
         /* values: [1 0 0] for each measurement position */
-        double* emitterView = (double*)calloc(numMeasurements*3,
+        double* emitterView = (double*)calloc(numEmitters*3*numMeasurements,
                                               sizeof(double));
-        for (size_t i=0; i<numMeasurements; i++)
+         for (size_t i=0; i<(numEmitters*numMeasurements); i++)
         {
             emitterView[i*3] = 1;
         }
