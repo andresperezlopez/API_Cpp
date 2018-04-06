@@ -7,26 +7,45 @@
 
 /************************************************************************************/
 /*
- *  SPECIFICATIONS
+ *                                      SPECS v0.1
  *
  *  AmbisonicsDRIR is based on GeneralFIRE, with the following additions:
  *
  *  GLOBAL ATTRIBUTES:
+ *
  *  -   Mandatory global attribute "AmbisonicsOrder", with arbitrary string value (e.g. "1", "2v1h", etc)
+ *
  *  -   Optional global attribute "MicrophoneModel"
+ *
  *  -   Optional global attribute "AmbisonicsConversionMethod"
  *
+ *
  *  VARIABLES:
+ *
  *  -   Mandatory string attribute "ChannelOrdering" for variable "Data.IR".
  *      Possible values: "acn", "sid" and "fuma". Default to "acn".
+ *
  *  -   Mandatory string attribute "Normalization" for variable "Data.IR".
  *      Possible values: "sn3d", "n3d", "fuma" and "maxn". Default to "sn3d".
- 
- *   @author     Andrés Pérez López, Pompeu Fabra University - Eurecat
- *               based on the work of Thibaut Carpentier, UMR STMS 9912 - Ircam-Centre Pompidou / CNRS / UPMC
  *
- *   @date       03/04/2018
+ *  -   Mandatory variable "ListenerUp", dimension [I,C] or [M,C], default to [0 0 1]
+ *      Mandatory attribute "ListenerUp:Type", value "cartesian" or "spherical", default to "cartesian"
  *
+ *  -   Mandatory variable "ListenerView", dimension [I,C] or [M,C], default to [1 0 0]
+ *      Mandatory attribute "ListenerView", value "cartesian" or "spherical", default to "cartesian"
+ *
+ *  -   Mandatory variable "EmitterUp", dimension [E, C, I] or [E, C, M], default to [0 0 1]
+ *      Mandatory attribute "EmitterUp", value "cartesian" or "spherical", default to "cartesian"
+ *
+ *  -   Mandatory variable "EmitterView", dimension [E, C, I] or [E, C, M], default to [1 0 0]
+ *      Mandatory attribute "EmitterView", value "cartesian" or "spherical", default to "cartesian"
+ *
+ * 
+ *  COMMENTS:
+ *
+ *  -   "Ambisonics channels" are stored in the Receiver dimension.
+ *      Therefore, the values stored in the variable "ReceiverPosition" are ommited,
+ *      since the information is already transformed into the Spherical Harmonics domain.
  */
 /************************************************************************************/
 
