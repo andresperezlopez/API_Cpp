@@ -309,7 +309,7 @@ int main(int argc, char *argv[])
         
         const netCDF::NcVar var = theFile.addVar( varName, typeName, dimNames );
         
-        ///@todo : fill the variable
+        /* values: zeros by default */
     }
     
     /// ListenerPosition
@@ -326,9 +326,7 @@ int main(int argc, char *argv[])
         var.putAtt( "Type", "cartesian" );
         var.putAtt( "Units", "meter" );
         
-        /* zeros */
-        const double fillValue = 0.0;
-        var.setFill( true, fillValue );
+        /* values: zeros by default */
     }
     
     /// ListenerUp
@@ -345,9 +343,7 @@ int main(int argc, char *argv[])
         var.putAtt( "Type", "cartesian" );
         var.putAtt( "Units", "meter" );
         
-        /* zeros */
-        const double fillValue = 0.0;
-        var.setFill( true, fillValue );
+        /* values: zeros by default */
     }
     
     /// ListenerView
@@ -364,9 +360,7 @@ int main(int argc, char *argv[])
         var.putAtt( "Type", "cartesian" );
         var.putAtt( "Units", "meter" );
         
-        /* zeros */
-        const double fillValue = 0.0;
-        var.setFill( true, fillValue );
+        /* values: zeros by default */
     }
     
     /// ReceiverPosition
@@ -384,9 +378,7 @@ int main(int argc, char *argv[])
         var.putAtt( "Type", "cartesian" );
         var.putAtt( "Units", "meter" );
         
-        /* zeros */
-        const double fillValue = 0.0;
-        var.setFill( true, fillValue );
+        /* values: zeros by default */
     }
     
     /// SourcePosition
@@ -403,9 +395,7 @@ int main(int argc, char *argv[])
         var.putAtt( "Type", "cartesian" );
         var.putAtt( "Units", "meter" );
         
-        /* zeros */
-        const double fillValue = 0.0;
-        var.setFill( true, fillValue );
+        /* values: zeros by default */
     }
     
     /// -------------------------------------------------
@@ -520,8 +510,8 @@ int main(int argc, char *argv[])
         const netCDF::NcVar var = theFile.addVar( varName, typeName, dimNames );
         
         /* attributes */
-        var.putAtt( "AmbisonicsChannelOrdering", "fuma" );
-        var.putAtt( "AmbisonicsNormalization", "fuma" );
+        var.putAtt( "ChannelOrdering", "fuma" );
+        var.putAtt( "Normalization", "fuma" );
         
         /* actual data */
         try

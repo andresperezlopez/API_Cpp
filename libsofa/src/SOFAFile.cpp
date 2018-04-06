@@ -1582,7 +1582,7 @@ bool File::GetDataIRChannelOrdering(sofa::AmbisonicsChannelOrdering::Type &chann
     
     const netCDF::NcVar var = getVariable( "Data.IR" );
     
-    const netCDF::NcVarAtt attNChannelOrdering  = sofa::NcUtils::GetAttribute( var, "AmbisonicsChannelOrdering" );
+    const netCDF::NcVarAtt attNChannelOrdering  = sofa::NcUtils::GetAttribute( var, "ChannelOrdering" );
     const std::string channelOrderingName       = sofa::NcUtils::GetAttributeValueAsString( attNChannelOrdering );
     
     channelOrdering = sofa::AmbisonicsChannelOrdering::GetType( channelOrderingName );
@@ -1610,7 +1610,7 @@ bool File::GetDataIRNormalization(sofa::AmbisonicsNormalization::Type &normaliza
     
     const netCDF::NcVar var = getVariable( "Data.IR" );
     
-    const netCDF::NcVarAtt attNNormalization    = sofa::NcUtils::GetAttribute( var, "AmbisonicsNormalization" );
+    const netCDF::NcVarAtt attNNormalization    = sofa::NcUtils::GetAttribute( var, "Normalization" );
     const std::string normalizationName         = sofa::NcUtils::GetAttributeValueAsString( attNNormalization );
     
     normalization = sofa::AmbisonicsNormalization::GetType( normalizationName );
