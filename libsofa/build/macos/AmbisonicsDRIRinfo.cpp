@@ -326,6 +326,32 @@ static void PrintSource(const sofa::File &theFile,
 
 /************************************************************************************/
 /*!
+ *  @brief          Prints data IT attributes
+ *
+ */
+/************************************************************************************/
+
+static void PrintDataIRAttr(const sofa::File &theFile,
+                            std::ostream & output)
+{
+    
+    sofa::AmbisonicsChannelOrdering::Type channelOrdering;
+    sofa::AmbisonicsNormalization::Type normalization;
+    bool ok = false;
+    
+    ok = theFile.GetDataIRChannelOrdering( channelOrdering );
+    SOFA_ASSERT( ok == true );
+    
+    ok = theFile.GetDataIRNormalization( normalization );
+    SOFA_ASSERT( ok == true );
+
+    output << sofa::String::PadWith( "DataIR:ChannelOrdering" ) << " = " << sofa::AmbisonicsChannelOrdering::GetName( channelOrdering ) << std::endl;
+    output << sofa::String::PadWith( "DataIR:Normalization" ) << " = " << sofa::AmbisonicsNormalization::GetName( normalization ) << std::endl;
+    
+}
+
+/************************************************************************************/
+/*!
  *  @brief          Main entry point
  *
  */
@@ -462,6 +488,11 @@ int main(int argc, char *argv[])
             output << std::endl;
             PrintEmitter( theFile, output );
         }
+        
+        /* print data attributes */
+        
+        output << std::endl;
+        PrintDataIRAttr( theFile, output );
         
         if( printData == true )
         {
