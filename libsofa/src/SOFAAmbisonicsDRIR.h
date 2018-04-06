@@ -4,7 +4,31 @@
 //
 //  Created by Andres Pérez López on 03/04/18.
 //
-//
+
+/************************************************************************************/
+/*
+ *  SPECIFICATIONS
+ *
+ *  AmbisonicsDRIR is based on GeneralFIRE, with the following additions:
+ *
+ *  GLOBAL ATTRIBUTES:
+ *  -   Mandatory global attribute "AmbisonicsOrder", with arbitrary string value (e.g. "1", "2v1h", etc)
+ *  -   Optional global attribute "MicrophoneModel"
+ *  -   Optional global attribute "AmbisonicsConversionMethod"
+ *
+ *  VARIABLES:
+ *  -   Mandatory string attribute "ChannelOrdering" for variable "Data.IR".
+ *      Possible values: "acn", "sid" and "fuma". Default to "acn".
+ *  -   Mandatory string attribute "Normalization" for variable "Data.IR".
+ *      Possible values: "sn3d", "n3d", "fuma" and "maxn". Default to "sn3d".
+ 
+ *   @author     Andrés Pérez López, Pompeu Fabra University - Eurecat
+ *               based on the work of Thibaut Carpentier, UMR STMS 9912 - Ircam-Centre Pompidou / CNRS / UPMC
+ *
+ *   @date       03/04/2018
+ *
+ */
+/************************************************************************************/
 
 
 

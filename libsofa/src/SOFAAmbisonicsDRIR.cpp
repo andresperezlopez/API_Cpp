@@ -63,6 +63,7 @@
 #include "../src/SOFAListener.h"
 #include "../src/SOFASource.h"
 #include "../src/SOFAEmitter.h"
+#include "../src/SOFAReceiver.h"
 
 using namespace sofa;
 
@@ -153,6 +154,29 @@ bool AmbisonicsDRIR::checkListenerVariables() const
 //        return false;
 //    }
     
+    /* Ensure Dimensions */
+    
+    /* Receiver */
+    const netCDF::NcVar varReceiverPosition           = NetCDFFile::getVariable( "ReceiverPosition" );
+    const netCDF::NcVar varReceiverUp                 = NetCDFFile::getVariable( "ReceiverUp" );
+    const netCDF::NcVar varReceiverView               = NetCDFFile::getVariable( "ReceiverView" );
+    
+    const sofa::Receiver receiver( varReceiverPosition, varReceiverUp, varReceiverView);
+    
+    if( receiver.IsValid() == false )
+    {
+        SOFA_THROW( "invalid 'Receiver' variables" );
+        return false;
+    }
+    
+    if( receiver.ReceiverPositionHasDimensions(  R, C, I  ) == false
+       && receiver.ReceiverPositionHasDimensions(  R, C, M  ) == false )
+    {
+        SOFA_THROW( "invalid 'ReceiverPosition' dimensions" );
+        return false;
+    }
+    
+    /* Listener */
     const netCDF::NcVar varListenerPosition        = NetCDFFile::getVariable( "ListenerPosition" );
     const netCDF::NcVar varListenerUp              = NetCDFFile::getVariable( "ListenerUp" );
     const netCDF::NcVar varListenerView            = NetCDFFile::getVariable( "ListenerView" );
@@ -172,11 +196,9 @@ bool AmbisonicsDRIR::checkListenerVariables() const
         return false;
     }
     
+    /* listenerUp is mandatory */
     if( listener.HasListenerUp() == true )
     {
-        /// ListenerUp is not required in the Specifications
-        /// but if it is present, is should be [ I C ] or [ M C ]
-        
         if( listener.ListenerUpHasDimensions(  I,  C ) == false
            && listener.ListenerUpHasDimensions(  M,  C ) == false )
         {
@@ -190,11 +212,9 @@ bool AmbisonicsDRIR::checkListenerVariables() const
         return false;
     }
     
+    /* listenerView is mandatory */
     if( listener.HasListenerView() == true )
     {
-        /// ListenerView is not required in the Specifications
-        /// but if it is present, is should be [ I C ] or [ M C ]
-        
         if( listener.ListenerViewHasDimensions(  I,  C ) == false
            && listener.ListenerViewHasDimensions(  M,  C ) == false )
         {
@@ -211,6 +231,7 @@ bool AmbisonicsDRIR::checkListenerVariables() const
     /// everything is OK !
     return true;
 }
+
 
 bool AmbisonicsDRIR::checkEmitterVariables() const
 {
@@ -244,16 +265,9 @@ bool AmbisonicsDRIR::checkEmitterVariables() const
         return false;
     }
     
-    const long N = GetNumDataSamples();
-    if( N <= 0 )
-    {
-        SOFA_THROW( "invalid SOFA dimension : N" );
-        return false;
-    }
-    
     /* Ensure Dimensions */
     
-    /* Source*/
+    /* Source */
     const netCDF::NcVar varSourcePosition           = NetCDFFile::getVariable( "SourcePosition" );
     const netCDF::NcVar varSourceUp                 = NetCDFFile::getVariable( "SourceUp" );
     const netCDF::NcVar varSourceView               = NetCDFFile::getVariable( "SourceView" );
@@ -285,13 +299,46 @@ bool AmbisonicsDRIR::checkEmitterVariables() const
         return false;
     }
     
-    if( emitter.EmitterPositionHasDimensions( E, C, M ) == false )
+    if( emitter.EmitterPositionHasDimensions( E, C, I ) == false
+       && emitter.EmitterPositionHasDimensions( E, C, M ) == false )
     {
-        SOFA_THROW( "invalid 'EmitterPsotion' dimensions" );
+        SOFA_THROW( "invalid 'EmitterPostion' dimensions" );
         return false;
     }
     
+    /* emitterUp is mandatory */
+    if( emitter.HasEmitterUpVariable() == true )
+    {
+        if( emitter.EmitterUpHasDimensions( E, C, I ) == false
+           && emitter.EmitterUpHasDimensions( E, C, M ) == false )
+        {
+            SOFA_THROW( "invalid 'EmitterUp' dimensions" );
+            return false;
+        }
+    }
+    else
+    {
+        SOFA_THROW( "missing 'EmitterUp' variable" );
+        return false;
+    }
     
+    /* emitterView is mandatory */
+    if( emitter.HasEmitterViewVariable() == true )
+    {
+        if( emitter.EmitterViewHasDimensions( E, C, I ) == false
+           && emitter.EmitterViewHasDimensions( E, C, M ) == false )
+        {
+            SOFA_THROW( "invalid 'EmitterView' dimensions" );
+            return false;
+        }
+    }
+    else
+    {
+        SOFA_THROW( "missing 'EmitterView' variable" );
+        return false;
+    }
+    
+    /// everything is OK !
     return true;
 }
 
@@ -346,6 +393,11 @@ bool AmbisonicsDRIR::IsValid() const
     }
     
     if( checkListenerVariables() == false )
+    {
+        return false;
+    }
+    
+    if( checkSourceVariables() == false )
     {
         return false;
     }

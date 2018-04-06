@@ -311,11 +311,12 @@ int main(int argc, char *argv[])
         
         /* values: zeros by default */
         double* delay = (double*)calloc(numMeasurements*numReceivers,
-                                              sizeof(double));
+                                        sizeof(double));
         var.putVar((const double*)delay);
         free(delay);
     }
     
+    /// -------------------------------------------------
     /// ListenerPosition
     {
         const std::string varName  = "ListenerPosition";
@@ -332,7 +333,7 @@ int main(int argc, char *argv[])
         
         /* values: zeros by default */
         double* listenerPosition = (double*)calloc(numMeasurements*3,
-                                                         sizeof(double));
+                                                   sizeof(double));
         var.putVar((const double*)listenerPosition);
         free(listenerPosition);
     }
@@ -351,9 +352,13 @@ int main(int argc, char *argv[])
         var.putAtt( "Type", "cartesian" );
         var.putAtt( "Units", "meter" );
         
-        /* values: zeros by default */
+        /* values: [0 0 1] for each measurement position */
         double* listenerUp = (double*)calloc(numMeasurements*3,
                                               sizeof(double));
+        for (size_t i=0; i<numMeasurements; i++)
+        {
+            listenerUp[(i*3)+2] = 1;
+        }
         var.putVar((const double*)listenerUp);
         free(listenerUp);
     }
@@ -372,13 +377,18 @@ int main(int argc, char *argv[])
         var.putAtt( "Type", "cartesian" );
         var.putAtt( "Units", "meter" );
         
-        /* values: zeros by default */
+        /* values: [1 0 0] for each measurement position */
         double* listenerView = (double*)calloc(numMeasurements*3,
-                                                     sizeof(double));
+                                               sizeof(double));
+        for (size_t i=0; i<numMeasurements; i++)
+        {
+            listenerView[i*3] = 1;
+        }
         var.putVar((const double*)listenerView);
         free(listenerView);
     }
     
+    /// -------------------------------------------------
     /// ReceiverPosition
     {
         const std::string varName  = "ReceiverPosition";
@@ -394,13 +404,14 @@ int main(int argc, char *argv[])
         var.putAtt( "Type", "cartesian" );
         var.putAtt( "Units", "meter" );
         
-        /* values: zeros by default */
+        /* values: [0 0 0] by default */
         double* receiverPosition = (double*)calloc(numReceivers*3*1,
                                                    sizeof(double));
         var.putVar((const double*)receiverPosition);
         free(receiverPosition);
     }
     
+    /// -------------------------------------------------
     /// SourcePosition
     {
         const std::string varName  = "SourcePosition";
@@ -412,14 +423,12 @@ int main(int argc, char *argv[])
         
         const netCDF::NcVar var = theFile.addVar( varName, typeName, dimNames );
         
-        var.putAtt( "Type", "cartesian" );
-        var.putAtt( "Units", "meter" );
+        var.putAtt( "Type", "spherical" );
+        var.putAtt( "Units", "degree, degree, meter" );
         
-        /* values: zeros by default */
-        double* sourcePosition = (double*)calloc(1*3,
-                                                 sizeof(double));
+        /* values: in front by default */
+        double sourcePosition[3] = {0, 0, 1};
         var.putVar((const double*)sourcePosition);
-        free(sourcePosition);
     }
     
     /// -------------------------------------------------
@@ -439,6 +448,59 @@ int main(int argc, char *argv[])
         var.putAtt( "Units", "meter" );
 
         var.putVar((const double*)loudspeaker_positions);    // not really sure if the casting is needed
+    }
+    
+    /// EmitterUp
+    {
+        const std::string varName  = "EmitterUp";
+        const std::string typeName = "double";
+        
+        std::vector< std::string > dimNames;
+        dimNames.push_back("E");
+        dimNames.push_back("C");
+        dimNames.push_back("M");
+
+        const netCDF::NcVar var = theFile.addVar( varName, typeName, dimNames );
+        
+        var.putAtt( "Type", "cartesian" );
+        var.putAtt( "Units", "meter" );
+        
+        /* values: [0 0 1] for each speaker */
+        double* emitterUp = (double*)calloc(numMeasurements*3,
+                                            sizeof(double));
+        for (size_t i=0; i<numMeasurements; i++)
+        {
+            emitterUp[(i*3)+2] = 1;
+        }
+        var.putVar((const double*)emitterUp);
+        free(emitterUp);
+    }
+    
+    /// EmitterView
+    {
+        const std::string varName  = "EmitterView";
+        const std::string typeName = "double";
+        
+        std::vector< std::string > dimNames;
+        dimNames.push_back("E");
+        dimNames.push_back("C");
+        dimNames.push_back("M");
+
+        
+        const netCDF::NcVar var = theFile.addVar( varName, typeName, dimNames );
+        
+        var.putAtt( "Type", "cartesian" );
+        var.putAtt( "Units", "meter" );
+        
+        /* values: [1 0 0] for each measurement position */
+        double* emitterView = (double*)calloc(numMeasurements*3,
+                                              sizeof(double));
+        for (size_t i=0; i<numMeasurements; i++)
+        {
+            emitterView[i*3] = 1;
+        }
+        var.putVar((const double*)emitterView);
+        free(emitterView);
     }
     
     /// -------------------------------------------------
