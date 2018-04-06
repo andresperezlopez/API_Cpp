@@ -119,9 +119,8 @@ static void PrintEmitter(const sofa::File &theFile,
                 output << pos[ index ] << " ";
             }
         }
-        output << std::endl;
     }
-    
+    output << std::endl;
     output << std::endl;
     
     ///
