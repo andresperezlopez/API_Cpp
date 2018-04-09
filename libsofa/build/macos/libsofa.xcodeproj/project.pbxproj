@@ -39,6 +39,8 @@
 		442168C42073B62900B875F4 /* createTestAmbisonicsDRIR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442168C32073B62900B875F4 /* createTestAmbisonicsDRIR.cpp */; };
 		442168C92073CCBA00B875F4 /* SOFAAmbisonicsDRIR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442168912073893800B875F4 /* SOFAAmbisonicsDRIR.cpp */; };
 		442168D22073CD1E00B875F4 /* convert_S3A_to_AmbisonicsDRIR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442168D12073CD1E00B875F4 /* convert_S3A_to_AmbisonicsDRIR.cpp */; };
+		443EA0A4207BC9410005562F /* SOFAAmbisonicsDRIR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442168912073893800B875F4 /* SOFAAmbisonicsDRIR.cpp */; };
+		443EA0AB207BC96E0005562F /* convert_openAIR_to_AmbisonicsDRIR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44F443C2207BB27800437EBC /* convert_openAIR_to_AmbisonicsDRIR.cpp */; };
 		4465527A207669A0008D2503 /* SOFAAmbisonicsChannelOrdering.h in Headers */ = {isa = PBXBuildFile; fileRef = 44655279207669A0008D2503 /* SOFAAmbisonicsChannelOrdering.h */; };
 		4465527C20766B90008D2503 /* SOFAAmbisonicsChannelOrdering.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4465527B20766B90008D2503 /* SOFAAmbisonicsChannelOrdering.cpp */; };
 		4465527E207673F4008D2503 /* SOFAAmbisonicsNormalization.h in Headers */ = {isa = PBXBuildFile; fileRef = 4465527D207673F4008D2503 /* SOFAAmbisonicsNormalization.h */; };
@@ -119,6 +121,13 @@
 			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = libsofa;
 		};
+		443EA0A1207BC9410005562F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = libsofa;
+		};
 		458CEB490AEF80AE0010981A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
@@ -184,10 +193,14 @@
 		442168D02073CCBA00B875F4 /* create test ADRIR copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "create test ADRIR copy2-Info.plist"; path = "/Users/andres.perez/source/API_Cpp/libsofa/build/macos/create test ADRIR copy2-Info.plist"; sourceTree = "<absolute>"; };
 		442168D12073CD1E00B875F4 /* convert_S3A_to_AmbisonicsDRIR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = convert_S3A_to_AmbisonicsDRIR.cpp; sourceTree = "<group>"; };
 		442168D32073F0C800B875F4 /* dr_wav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dr_wav.h; sourceTree = "<group>"; };
+		443EA0A9207BC9410005562F /* convert_openAIR_to_AmbisonicsDRIR */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = convert_openAIR_to_AmbisonicsDRIR; sourceTree = BUILT_PRODUCTS_DIR; };
+		443EA0AA207BC9410005562F /* convert_S3A_to_AmbisonicsDRIR copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "convert_S3A_to_AmbisonicsDRIR copy2-Info.plist"; path = "/Users/andres.perez/source/API_Cpp/libsofa/build/macos/convert_S3A_to_AmbisonicsDRIR copy2-Info.plist"; sourceTree = "<absolute>"; };
 		44655279207669A0008D2503 /* SOFAAmbisonicsChannelOrdering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOFAAmbisonicsChannelOrdering.h; sourceTree = "<group>"; };
 		4465527B20766B90008D2503 /* SOFAAmbisonicsChannelOrdering.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SOFAAmbisonicsChannelOrdering.cpp; sourceTree = "<group>"; };
 		4465527D207673F4008D2503 /* SOFAAmbisonicsNormalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOFAAmbisonicsNormalization.h; sourceTree = "<group>"; };
 		4465527F20767471008D2503 /* SOFAAmbisonicsNormalization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SOFAAmbisonicsNormalization.cpp; sourceTree = "<group>"; };
+		44F443C1207BB25600437EBC /* convert_S3A_to_AmbisonicsDRIR copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "convert_S3A_to_AmbisonicsDRIR copy-Info.plist"; path = "/Users/andres.perez/source/API_Cpp/libsofa/build/macos/convert_S3A_to_AmbisonicsDRIR copy-Info.plist"; sourceTree = "<absolute>"; };
+		44F443C2207BB27800437EBC /* convert_openAIR_to_AmbisonicsDRIR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = convert_openAIR_to_AmbisonicsDRIR.cpp; sourceTree = "<group>"; };
 		D2AAC046055464E500DB518D /* libsofa_debug.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsofa_debug.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F82B2B2119EE76AC006A84FC /* sofaexamples_debug */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sofaexamples_debug; sourceTree = BUILT_PRODUCTS_DIR; };
 		F82B2B2319EE76C2006A84FC /* sofaexamples.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = sofaexamples.cpp; path = ../../src/sofaexamples.cpp; sourceTree = "<group>"; };
@@ -279,6 +292,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		443EA0A5207BC9410005562F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D289987405E68DCB004EDB86 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -324,6 +344,8 @@
 				442168AE2073B45B00B875F4 /* sofaexamples copy-Info.plist */,
 				442168BB2073B5C500B875F4 /* create test ADRIR copy-Info.plist */,
 				442168D02073CCBA00B875F4 /* create test ADRIR copy2-Info.plist */,
+				44F443C1207BB25600437EBC /* convert_S3A_to_AmbisonicsDRIR copy-Info.plist */,
+				443EA0AA207BC9410005562F /* convert_S3A_to_AmbisonicsDRIR copy2-Info.plist */,
 			);
 			name = libspat;
 			sourceTree = "<group>";
@@ -338,6 +360,7 @@
 				442168AD2073B45A00B875F4 /* create test ADRIR */,
 				442168BA2073B5C400B875F4 /* AmbisonicsDRIR info */,
 				442168CF2073CCBA00B875F4 /* convert_S3A_to_AmbisonicsDRIR */,
+				443EA0A9207BC9410005562F /* convert_openAIR_to_AmbisonicsDRIR */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -369,6 +392,7 @@
 				442168BC2073B5EF00B875F4 /* AmbisonicsDRIRinfo.cpp */,
 				442168C32073B62900B875F4 /* createTestAmbisonicsDRIR.cpp */,
 				442168D12073CD1E00B875F4 /* convert_S3A_to_AmbisonicsDRIR.cpp */,
+				44F443C2207BB27800437EBC /* convert_openAIR_to_AmbisonicsDRIR.cpp */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -579,6 +603,23 @@
 			productReference = 442168CF2073CCBA00B875F4 /* convert_S3A_to_AmbisonicsDRIR */;
 			productType = "com.apple.product-type.tool";
 		};
+		443EA09F207BC9410005562F /* convert_openAIR_to_AmbisonicsDRIR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 443EA0A6207BC9410005562F /* Build configuration list for PBXNativeTarget "convert_openAIR_to_AmbisonicsDRIR" */;
+			buildPhases = (
+				443EA0A2207BC9410005562F /* Sources */,
+				443EA0A5207BC9410005562F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				443EA0A0207BC9410005562F /* PBXTargetDependency */,
+			);
+			name = convert_openAIR_to_AmbisonicsDRIR;
+			productName = sofatest;
+			productReference = 443EA0A9207BC9410005562F /* convert_openAIR_to_AmbisonicsDRIR */;
+			productType = "com.apple.product-type.tool";
+		};
 		D2AAC045055464E500DB518D /* libsofa */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB91EB08733DB70010E9CD /* Build configuration list for PBXNativeTarget "libsofa" */;
@@ -678,6 +719,7 @@
 				442168A32073B45A00B875F4 /* create test ADRIR */,
 				442168B02073B5C400B875F4 /* AmbisonicsDRIR info */,
 				442168C52073CCBA00B875F4 /* convert_S3A_to_AmbisonicsDRIR */,
+				443EA09F207BC9410005562F /* convert_openAIR_to_AmbisonicsDRIR */,
 			);
 		};
 /* End PBXProject section */
@@ -707,6 +749,15 @@
 			files = (
 				442168D22073CD1E00B875F4 /* convert_S3A_to_AmbisonicsDRIR.cpp in Sources */,
 				442168C92073CCBA00B875F4 /* SOFAAmbisonicsDRIR.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		443EA0A2207BC9410005562F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				443EA0A4207BC9410005562F /* SOFAAmbisonicsDRIR.cpp in Sources */,
+				443EA0AB207BC96E0005562F /* convert_openAIR_to_AmbisonicsDRIR.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,6 +843,11 @@
 			isa = PBXTargetDependency;
 			target = D2AAC045055464E500DB518D /* libsofa */;
 			targetProxy = 442168C72073CCBA00B875F4 /* PBXContainerItemProxy */;
+		};
+		443EA0A0207BC9410005562F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2AAC045055464E500DB518D /* libsofa */;
+			targetProxy = 443EA0A1207BC9410005562F /* PBXContainerItemProxy */;
 		};
 		458CEB4A0AEF80AE0010981A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -912,6 +968,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8FD650B187EC4A6007B45C0 /* shelltools.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				INFOPLIST_FILE = "create test ADRIR copy2-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -922,7 +979,30 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8FD650C187EC4A6007B45C0 /* shelltools.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				INFOPLIST_FILE = "create test ADRIR copy2-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		443EA0A7207BC9410005562F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8FD650B187EC4A6007B45C0 /* shelltools.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				INFOPLIST_FILE = "convert_S3A_to_AmbisonicsDRIR copy2-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		443EA0A8207BC9410005562F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8FD650C187EC4A6007B45C0 /* shelltools.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				INFOPLIST_FILE = "convert_S3A_to_AmbisonicsDRIR copy2-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -1043,6 +1123,15 @@
 			buildConfigurations = (
 				442168CD2073CCBA00B875F4 /* Debug */,
 				442168CE2073CCBA00B875F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		443EA0A6207BC9410005562F /* Build configuration list for PBXNativeTarget "convert_openAIR_to_AmbisonicsDRIR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				443EA0A7207BC9410005562F /* Debug */,
+				443EA0A8207BC9410005562F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
