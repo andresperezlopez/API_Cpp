@@ -19,6 +19,8 @@
  *
  *  -   Optional global attribute "AmbisonicsConversionMethod"
  *
+ *  -   Optional global attribute "RoomDescription"
+ *
  *
  *  VARIABLES:
  *

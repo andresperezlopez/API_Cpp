@@ -254,6 +254,9 @@ int main(int argc, char *argv[])
         
         /* Ambisonics Conversion Method */
         theFile.putAtt( "AmbisonicsConversionMethod", "Hardware" );
+        
+        /* Room Description */
+        theFile.putAtt( "RoomDesctiption", "Main Church" );
     }
     
     //==============================================================================
