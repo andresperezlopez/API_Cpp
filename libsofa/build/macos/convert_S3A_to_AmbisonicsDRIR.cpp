@@ -250,7 +250,7 @@ int main(int argc, char *argv[])
         theFile.putAtt( "AmbisonicsOrder", "1" );
         
         /* Microphone Model */
-        theFile.putAtt( "MicrophoneModel", "Soundfield" );
+        theFile.putAtt( "AmbisonicsMicrophoneModel", "Soundfield" );
         
         /* Ambisonics Conversion Method */
         theFile.putAtt( "AmbisonicsConversionMethod", "Hardware" );

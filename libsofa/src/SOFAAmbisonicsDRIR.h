@@ -15,7 +15,7 @@
  *
  *  -   Mandatory global attribute "AmbisonicsOrder", with arbitrary string value (e.g. "1", "2v1h", etc)
  *
- *  -   Optional global attribute "MicrophoneModel"
+ *  -   Optional global attribute "AmbisonicsMicrophoneModel"
  *
  *  -   Optional global attribute "AmbisonicsConversionMethod"
  *
