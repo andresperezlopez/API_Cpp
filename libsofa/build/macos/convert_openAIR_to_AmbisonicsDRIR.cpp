@@ -512,7 +512,7 @@ int main(int argc, char *argv[])
         std::vector< std::string > dimNames;
         dimNames.push_back("E");
         dimNames.push_back("C");
-        dimNames.push_back("M");
+        dimNames.push_back("I");    // same emitter position for each receiver position, no need for M
         
         const netCDF::NcVar var = theFile.addVar( varName, typeName, dimNames );
         
@@ -520,9 +520,9 @@ int main(int argc, char *argv[])
         var.putAtt( "Units", "meter" );
         
         /* values: [0 0 1] for each speaker */
-        double* emitterUp = (double*)calloc(numEmitters*3*numMeasurements,
+        double* emitterUp = (double*)calloc(numEmitters*3,
                                             sizeof(double));
-        for (size_t i=0; i<(numEmitters*numMeasurements); i++)
+        for (size_t i=0; i<(numEmitters); i++)
         {
             emitterUp[(i*3)+2] = 1;
         }
@@ -538,7 +538,7 @@ int main(int argc, char *argv[])
         std::vector< std::string > dimNames;
         dimNames.push_back("E");
         dimNames.push_back("C");
-        dimNames.push_back("M");
+        dimNames.push_back("I");    // same emitter position for each receiver position, no need for M
         
         
         const netCDF::NcVar var = theFile.addVar( varName, typeName, dimNames );
@@ -547,9 +547,9 @@ int main(int argc, char *argv[])
         var.putAtt( "Units", "meter" );
         
         /* values: [1 0 0] for each measurement position */
-        double* emitterView = (double*)calloc(numEmitters*3*numMeasurements,
+        double* emitterView = (double*)calloc(numEmitters*3,
                                               sizeof(double));
-        for (size_t i=0; i<(numEmitters*numMeasurements); i++)
+        for (size_t i=0; i<(numEmitters); i++)
         {
             emitterView[i*3] = 1;
         }
