@@ -68,7 +68,7 @@
 using namespace sofa;
 
 const unsigned int AmbisonicsDRIR::ConventionVersionMajor  =   0;
-const unsigned int AmbisonicsDRIR::ConventionVersionMinor  =   1;
+const unsigned int AmbisonicsDRIR::ConventionVersionMinor  =   2;
 
 std::string AmbisonicsDRIR::GetConventionVersion()
 {
@@ -133,6 +133,13 @@ bool AmbisonicsDRIR::checkListenerVariables() const
         SOFA_THROW( "invalid SOFA dimension : R" );
         return false;
     }
+    
+    const long E = GetDimension("E");
+    if( M <= 0 )
+    {
+        SOFA_THROW( "invalid SOFA dimension : E" );
+        return false;
+    }
  
     /************************ TODO ************************
      *
@@ -155,26 +162,6 @@ bool AmbisonicsDRIR::checkListenerVariables() const
 //    }
     
     /* Ensure Dimensions */
-    
-    /* Receiver */
-    const netCDF::NcVar varReceiverPosition           = NetCDFFile::getVariable( "ReceiverPosition" );
-    const netCDF::NcVar varReceiverUp                 = NetCDFFile::getVariable( "ReceiverUp" );
-    const netCDF::NcVar varReceiverView               = NetCDFFile::getVariable( "ReceiverView" );
-    
-    const sofa::Receiver receiver( varReceiverPosition, varReceiverUp, varReceiverView);
-    
-    if( receiver.IsValid() == false )
-    {
-        SOFA_THROW( "invalid 'Receiver' variables" );
-        return false;
-    }
-    
-    if( receiver.ReceiverPositionHasDimensions(  R, C, I  ) == false
-       && receiver.ReceiverPositionHasDimensions(  R, C, M  ) == false )
-    {
-        SOFA_THROW( "invalid 'ReceiverPosition' dimensions" );
-        return false;
-    }
     
     /* Listener */
     const netCDF::NcVar varListenerPosition        = NetCDFFile::getVariable( "ListenerPosition" );
@@ -225,6 +212,100 @@ bool AmbisonicsDRIR::checkListenerVariables() const
     else
     {
         SOFA_THROW( "missing 'ListenerView' variable" );
+        return false;
+    }
+    
+    
+    /* Source */
+    const netCDF::NcVar varSourcePosition        = NetCDFFile::getVariable( "SourcePosition" );
+    const netCDF::NcVar varSourceUp              = NetCDFFile::getVariable( "SourceUp" );
+    const netCDF::NcVar varSourceView            = NetCDFFile::getVariable( "SourceView" );
+    
+    const sofa::Source source( varSourcePosition, varSourceUp, varSourceView );
+    
+    if( source.IsValid() == false )
+    {
+        SOFA_THROW( "invalid 'Source' variables" );
+        return false;
+    }
+    
+    if( source.SourcePositionHasDimensions(  I,  C ) == false
+       && source.SourcePositionHasDimensions(  M,  C ) == false )
+    {
+        SOFA_THROW( "invalid 'SourcePosition' dimensions" );
+        return false;
+    }
+    
+    /* sourceUp is mandatory */
+    if( source.HasSourceUp() == true )
+    {
+        if( source.SourceUpHasDimensions(  I,  C ) == false
+           && source.SourceUpHasDimensions(  M,  C ) == false )
+        {
+            SOFA_THROW( "invalid 'SourceUp' dimensions" );
+            return false;
+        }
+    }
+    else
+    {
+        SOFA_THROW( "missing 'SourceUp' variable" );
+        return false;
+    }
+    
+    /* sourceView is mandatory */
+    if( source.HasSourceView() == true )
+    {
+        if( source.SourceViewHasDimensions(  I,  C ) == false
+           && source.SourceViewHasDimensions(  M,  C ) == false )
+        {
+            SOFA_THROW( "invalid 'SourceView' dimensions" );
+            return false;
+        }
+    }
+    else
+    {
+        SOFA_THROW( "missing 'SourceView' variable" );
+        return false;
+    }
+    
+    
+    /* Receiver */
+    const netCDF::NcVar varReceiverPosition           = NetCDFFile::getVariable( "ReceiverPosition" );
+    const netCDF::NcVar varReceiverUp                 = NetCDFFile::getVariable( "ReceiverUp" );
+    const netCDF::NcVar varReceiverView               = NetCDFFile::getVariable( "ReceiverView" );
+    
+    const sofa::Receiver receiver( varReceiverPosition, varReceiverUp, varReceiverView);
+    
+    if( receiver.IsValid() == false )
+    {
+        SOFA_THROW( "invalid 'Receiver' variables" );
+        return false;
+    }
+    
+    if( receiver.ReceiverPositionHasDimensions(  R, C, I  ) == false
+       && receiver.ReceiverPositionHasDimensions(  R, C, M  ) == false )
+    {
+        SOFA_THROW( "invalid 'ReceiverPosition' dimensions" );
+        return false;
+    }
+    
+    /* Emitter */
+    const netCDF::NcVar varEmitterPosition           = NetCDFFile::getVariable( "EmitterPosition" );
+    const netCDF::NcVar varEmitterUp                 = NetCDFFile::getVariable( "EmitterUp" );
+    const netCDF::NcVar varEmitterView               = NetCDFFile::getVariable( "EmitterView" );
+    
+    const sofa::Emitter emitter( varEmitterPosition, varEmitterUp, varEmitterView);
+    
+    if( emitter.IsValid() == false )
+    {
+        SOFA_THROW( "invalid 'Emitter' variables" );
+        return false;
+    }
+    
+    if( emitter.EmitterPositionHasDimensions(  E, C, I  ) == false
+       && emitter.EmitterPositionHasDimensions(  E, C, M  ) == false )
+    {
+        SOFA_THROW( "invalid 'EmitterPosition' dimensions" );
         return false;
     }
     
